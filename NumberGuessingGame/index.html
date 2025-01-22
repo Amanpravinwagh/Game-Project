@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 100!</p>
+        <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        console.log('Secret Number:', randomNumber); // For debugging purposes
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guessInput').value);
+            const messageDiv = document.getElementById('message');
+
+            if (isNaN(userGuess)) {
+                messageDiv.textContent = 'Please enter a valid number!';
+                messageDiv.style.color = 'red';
+                return;
+            }
+
+            if (userGuess < randomNumber) {
+                messageDiv.textContent = 'Too low! Try again.';
+                messageDiv.style.color = 'blue';
+            } else if (userGuess > randomNumber) {
+                messageDiv.textContent = 'Too high! Try again.';
+                messageDiv.style.color = 'orange';
+            } else {
+                messageDiv.textContent = 'Congratulations! You guessed the correct number!';
+                messageDiv.style.color = 'green';
+            }
+        }
+    </script>
+</body>
+</html>
